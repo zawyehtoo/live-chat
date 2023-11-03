@@ -1,4 +1,6 @@
 import firebase from 'firebase/app'
+import 'firebase/firestore'
+
 const firebaseConfig = {
     apiKey: "AIzaSyAYUl426R8wd58pxETnsmRsOKhwQDInryg",
     authDomain: "live-chat-1096d.firebaseapp.com",
@@ -7,3 +9,10 @@ const firebaseConfig = {
     messagingSenderId: "841503491359",
     appId: "1:841503491359:web:ddadfbde9051637451dc2a"
   };
+
+firebase.initializeApp(firebaseConfig)
+
+const projectFirestore  = firebase.firestore()
+const  timestamp = firebase.firestore.FieldValue.serverTimestamp
+
+export {projectFirestore,timestamp}
