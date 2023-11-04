@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 const error = ref(null)
 
-const signUp = async(name,email,password) =>{
+const signUp = async(email,password,name) =>{
     error.value =null
     try{
        const res =  await projectAuth.createUserWithEmailAndPassword(email,password)
