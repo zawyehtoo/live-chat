@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="handleSubmit">
     <h3>Sign up</h3>
-    <input type="text" v-model="name" required placeholder="Enter name" />
+    <input type="text" v-model="displayName" required placeholder="Enter name" />
     <input type="email" v-model="email" required placeholder="Enter email" />
     <input
       type="password"
@@ -9,20 +9,25 @@
       required
       placeholder="Enter password"
     />
+    <div v-if="error" class="error">{{error}}</div>
     <button type="submit">Submit</button>
   </form>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref,defineEmits } from "vue";
 import useSignup from "../composables/useSignup";
-const { error, singUp } = useSignup();
+const emits = defineEmits(["signup"]);
+const { error, signUp } = useSignup();
 
-const name = ref("");
+const displayName = ref("");
 const email = ref("");
 const password = ref("");
 const handleSubmit = async () => {
-  await singUp(name.value,email.value, password.value);
+  await signUp(email.value, password.value,displayName.value);
+  if (!error.value) {
+    emits("signup");
+  }
 };
 </script>
 

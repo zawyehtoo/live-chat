@@ -1,11 +1,11 @@
 <template>
   <div class="welcome container">
     <div v-if="showLogin">
-        <LoginForm />
+        <LoginForm @login="enterChat"/>
         <p>Don't have account?<span style="color:blue;cursor:pointer" @click="showLogin = false">Create New one.</span></p>
     </div>
     <div v-else>
-        <SignupForm />
+        <SignupForm @signup="enterChat"/>
         <p>Already have an account?<span style="color:blue;cursor:pointer" @click="showLogin = true">Login</span></p>
     </div>
   </div>
@@ -14,10 +14,14 @@
 <script setup>
 import SignupForm from '../components/SignupForm.vue'
 import LoginForm from '../components/LoginForm.vue'
+import {useRouter} from 'vue-router'
 import { ref } from 'vue'
 
+const router = useRouter()
 const showLogin =ref(true);
-
+const enterChat = ()=>{
+    router.push({name:'Chatroom'})
+}
 
 </script>
 
@@ -38,7 +42,7 @@ const showLogin =ref(true);
     width: 100%;
     padding: 10px;
     border-radius: 20px;
-    border: 1px solid white;
+    border: 1px solid lightblue;
     outline: none;
     color: #999;
     margin: 10px auto;

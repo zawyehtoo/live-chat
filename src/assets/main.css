@@ -13,6 +13,7 @@ body{
 .error{
     color: #ff3f80;
     font-size: 14px;
+    margin: 15px;
 }
 button{
     text-decoration: none;
